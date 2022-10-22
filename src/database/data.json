@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "telefone": 949196553,
+    "nome": "Raul Dillan",
+    "endereco": "Av 1, N: 38",
+    "qualificado": false,
+    "status": ""
+  },
+  {
+    "id": 2,
+    "telefone": 965607634,
+    "nome": "Renan",
+    "endereco": "Av 2, N: 39",
+    "qualificado": true,
+    "status": ""
+  },
+  {
+    "id": "3",
+    "telefone": 965607634,
+    "nome": "Cliente 3",
+    "endereco": "Av 3, N: 39",
+    "qualificado": true,
+    "status": ""
+  },
+  {
+    "id": 4,
+    "telefone": 965607634,
+    "nome": "Cliente 4",
+    "endereco": "Av 4, N: 39",
+    "qualificado": true,
+    "status": ""
+    
+  }
+]
