@@ -1,9 +1,10 @@
 import './App.css';
 import axios from 'axios';
 import XMLParser from 'react-xml-parser'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ClientRepository } from './repository/clientRepository'
-import { clientsDefault } from './database/data.js'
+import { FormQualifica } from './components/FormQualifica'
+import Context from './contexts/form-context'
 
 
 function App() {
@@ -11,16 +12,11 @@ function App() {
   const [idLigacao, setIdLigacao] = useState('')
   const [statusLigacao, setStatusLigacao] = useState('')
   const [client, setClient] = useState([])
-  const [qualificado, setQualificado] = useState(false)
 
-  const clientRepository = new ClientRepository(clientsDefault)
+  const clientRepository = new ClientRepository()
 
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
   
-
-  useEffect(() => {
-    setClient([])
-  }, [])
 
   async function startSession() {
     const { data } = await axios.get(urlStartSessao)
@@ -29,9 +25,10 @@ function App() {
   }
 
   async function gerarLigacao() {
-    const currentClient = clientRepository.findFirst()
+    const currentClient = await clientRepository.findFirst()
     setClient(currentClient)
-    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${client.telefone}`)
+    console.log(currentClient.telefone);
+    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${currentClient.telefone}`)
     const responseJson = new XMLParser().parseFromString(data)
     setIdLigacao(responseJson.children[1].value)
   }
@@ -52,27 +49,30 @@ function App() {
     //setStatusLigacao(responseJson.children[1].value)
   }
 
-  async function QualificarLigacao() {
-    const clientId = client.id
-    clientRepository.update(clientId, statusLigacao)
-  }
+  // async function QualificarLigacao() {
+  //   const clientId = client.id
+  //   clientRepository.update(clientId, statusLigacao)
+  // }
 
   return (
     <div className="App">
-      <>
+      <Context.Provider value={{ idSessao, idLigacao, statusLigacao, client }}>
          <button onClick={startSession}>Iniciar Sessão</button>
          <button onClick={gerarLigacao}>Gerar Ligação</button>
-         <button onClick={QualificarLigacao}>Qualificar</button>
          <button onClick={consultarLigacao}>Consultar Ligação</button>
          <button onClick={ChecarConnectedId}>Checar Status Ramal</button>
-      </>
-      <h3>ID da Sessão: {idSessao}</h3>
-      <h3>Status da liga: {statusLigacao}</h3>
-      <h3>ID da Ligação: {idLigacao}</h3>
-      <h3>ID do Cliente: {client.id}</h3>
-      <h3>Nome do Cliente: {client.nome}</h3>
-      <h3>Endereço: {client.endereco}</h3>
-      <h3>Telefone: {client.telefone}</h3>
+     
+        <h3>Dados do Cliente </h3>
+        <h4>ID da Sessão: {idSessao}</h4>
+        <h4>Status da liga: {statusLigacao}</h4>
+        <h4>ID da Ligação: {idLigacao}</h4>
+        <h4>ID do Cliente: {client.id}</h4>
+        <h4>Nome do Cliente: {client.nome}</h4>
+        <h4>Endereço: {client.endereco}</h4>
+        <h4>Telefone: {client.telefone}</h4>
+
+        <FormQualifica />
+      </ Context.Provider>
     </div>
   );
 }

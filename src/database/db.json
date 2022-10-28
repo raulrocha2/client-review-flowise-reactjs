@@ -1,0 +1,58 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "telefone": 949196553,
+      "nome": "Raul Dillan",
+      "endereco": "Av 1, N: 38",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Qualificado dia 28/10"
+    },
+    {
+      "id": 2,
+      "telefone": 965607634,
+      "nome": "Renan",
+      "endereco": "Av 2, N: 39",
+      "qualificado": true,
+      "status": "PR",
+      "descricao": "Qualificado Renan dia 28/10"
+    },
+    {
+      "id": 3,
+      "telefone": 965607634,
+      "nome": "Cliente 3",
+      "endereco": "Av 3, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Qualificado Cliente 3 dia 28/10"
+    },
+    {
+      "id": 4,
+      "telefone": 35007518,
+      "nome": "Cliente 4",
+      "endereco": "Av 4, N: 39",
+      "qualificado": false,
+      "status": "ED",
+      "descricao": ""
+    },
+    {
+      "id": 5,
+      "telefone": 965607634,
+      "nome": "Cliente 5",
+      "endereco": "Av 3, N: 39",
+      "qualificado": false,
+      "status": "",
+      "descricao": ""
+    },
+    {
+      "id": 6,
+      "telefone": 35007518,
+      "nome": "Cliente 6",
+      "endereco": "Av 4, N: 39",
+      "qualificado": false,
+      "status": "",
+      "descricao": ""
+    }
+  ]
+}

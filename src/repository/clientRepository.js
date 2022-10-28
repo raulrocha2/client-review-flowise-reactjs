@@ -1,22 +1,21 @@
 
+import axios from 'axios'
 
 export class ClientRepository {
 
-  constructor(clients) {
-    this.clients = clients
-  }
-  
-  findFirst() {
-    console.log('findFirst',this.clients);
-    const client = this.clients.find(client => client.qualificado === false)
-    //console.log('client', client);
+  async findFirst() {
+    const { data } = await axios.get('http://localhost:5000/clients')
+    const client = data.find(client => client.qualificado === false)
     return client
   }
 
-  update(clientId, statusLigacao) {
-    const clientIndex = this.clients.findIndex(client => client.id === clientId)
-    this.clients[clientIndex].qualificado = true
-    this.clients[clientIndex].status = statusLigacao
-    //console.log('update', this.clients);
+  async update(clientId, statusLigacao, descricao) {
+    return await axios.patch(`http://localhost:5000/clients/${clientId}`, 
+    {
+      "status": statusLigacao,
+      "qualificado": true,
+      descricao
+    }
+    )
   }
 }
