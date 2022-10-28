@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { ClientRepository } from './repository/clientRepository'
 import { FormQualifica } from './components/FormQualifica'
 import Context from './contexts/form-context'
+import { NextAPI } from './usecase/nextApi';
 
 
 function App() {
@@ -13,24 +14,23 @@ function App() {
   const [statusLigacao, setStatusLigacao] = useState('')
   const [client, setClient] = useState([])
 
-  const clientRepository = new ClientRepository()
-
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
+  
+  const clientRepository = new ClientRepository()
+  const nextAPI = new NextAPI(urlStartSessao, clientRepository)
+
   
 
   async function startSession() {
-    const { data } = await axios.get(urlStartSessao)
-    const responseJson = new XMLParser().parseFromString(data)
-    setIdSessao(responseJson.children[1].value)
+    const result = await nextAPI.startSession()
+    setIdSessao(result)
   }
 
   async function gerarLigacao() {
     const currentClient = await clientRepository.findFirst()
     setClient(currentClient)
-    console.log(currentClient.telefone);
-    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${currentClient.telefone}`)
-    const responseJson = new XMLParser().parseFromString(data)
-    setIdLigacao(responseJson.children[1].value)
+    const result = await nextAPI.gerarLigacao(idSessao)
+    setIdLigacao(result)
   }
   
 
@@ -49,10 +49,6 @@ function App() {
     //setStatusLigacao(responseJson.children[1].value)
   }
 
-  // async function QualificarLigacao() {
-  //   const clientId = client.id
-  //   clientRepository.update(clientId, statusLigacao)
-  // }
 
   return (
     <div className="App">

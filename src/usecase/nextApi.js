@@ -2,7 +2,7 @@ import axios from 'axios'
 import XMLParser from 'react-xml-parser'
 
 export class NextAPI {
-  idSessao
+  
   constructor (url, clientRepository){
     this.url = url
     this.clientRepository = clientRepository
