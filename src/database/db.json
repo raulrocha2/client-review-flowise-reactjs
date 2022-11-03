@@ -5,9 +5,9 @@
       "telefone": 949196553,
       "nome": "Raul Dillan",
       "endereco": "Av 1, N: 38",
-      "qualificado": false,
+      "qualificado": true,
       "status": "ED",
-      "descricao": "Qualificado dia 28/10"
+      "descricao": "Chamada não atendida "
     },
     {
       "id": 2,
@@ -32,18 +32,18 @@
       "telefone": 35007518,
       "nome": "Cliente 4",
       "endereco": "Av 4, N: 39",
-      "qualificado": false,
-      "status": "ED",
-      "descricao": ""
+      "qualificado": true,
+      "status": "PR",
+      "descricao": "Cliente confirmado"
     },
     {
       "id": 5,
       "telefone": 965607634,
       "nome": "Cliente 5",
       "endereco": "Av 3, N: 39",
-      "qualificado": false,
-      "status": "",
-      "descricao": ""
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Cliente não atendeu"
     },
     {
       "id": 6,
