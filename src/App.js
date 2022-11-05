@@ -59,27 +59,23 @@ function App() {
         <div className='container'>
 
          <div className='details'>
-         <button onClick={startSession}>Iniciar Sessão</button>
-          <h2>Dados da Ligação</h2>
-          <h3>ID da Sessão: {idSessao}</h3>
-          <h3>Status da liga: {statusLigacao}</h3>
-          <h3>ID da Ligação: {idLigacao}</h3>
-          <h3>ID do Cliente: {client.id}</h3>
-          <h3>Nome do Cliente: {client.nome}</h3>
-          <h3>Endereço: {client.endereco}</h3>
-          <h3>Telefone: {client.telefone}</h3>
-          <br/>
-          <FormQualifica />
+          <button onClick={startSession}>Iniciar Sessão</button>
+            <h2>Dados da Ligação</h2>
+            <h3>ID da Sessão: {idSessao}</h3>
+            <h3>Status da liga: {statusLigacao}</h3>
+            <h3>ID da Ligação: {idLigacao}</h3>
+            <h3>ID do Cliente: {client.id}</h3>
+            <h3>Nome do Cliente: {client.nome}</h3>
+            <h3>Endereço: {client.endereco}</h3>
+            <h3>Telefone: {client.telefone}</h3>
+            <FormQualifica />
+          </div>
+          <div className='control'>
+          <button onClick={gerarLigacao}>Gerar Ligação</button>
+          <button onClick={consultarLigacao}>Consultar Ligação</button>
+          <button onClick={ChecarConnectedId}>Checar Status Ramal</button>
+          </div>
         </div>
-        <div className='control'>
-         <button onClick={gerarLigacao}>Gerar Ligação</button>
-         <button onClick={consultarLigacao}>Consultar Ligação</button>
-         <button onClick={ChecarConnectedId}>Checar Status Ramal</button>
-        </div>
-        
-        </div>
-        
-
       </ Context.Provider>
       <footer className='footer'>&copy; 2022 RenRaDevs.com</footer>
     </div>
