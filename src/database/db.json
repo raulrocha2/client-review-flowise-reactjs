@@ -7,41 +7,41 @@
       "endereco": "Av 1, N: 38",
       "qualificado": true,
       "status": "ED",
-      "descricao": "Chamada não atendida "
+      "descricao": "Qualificado"
     },
     {
       "id": 2,
       "telefone": 965607634,
       "nome": "Renan",
       "endereco": "Av 2, N: 39",
-      "qualificado": true,
-      "status": "PR",
-      "descricao": "Qualificado Renan dia 28/10"
+      "qualificado": false,
+      "status": "ED",
+      "descricao": "Finalizado"
     },
     {
       "id": 3,
       "telefone": 965607634,
       "nome": "Cliente 3",
       "endereco": "Av 3, N: 39",
-      "qualificado": true,
+      "qualificado": false,
       "status": "ED",
-      "descricao": "Qualificado Cliente 3 dia 28/10"
+      "descricao": "Vota 13 "
     },
     {
       "id": 4,
       "telefone": 35007518,
       "nome": "Cliente 4",
       "endereco": "Av 4, N: 39",
-      "qualificado": true,
-      "status": "PR",
-      "descricao": "Cliente confirmado"
+      "qualificado": false,
+      "status": "AT",
+      "descricao": "Vota 22"
     },
     {
       "id": 5,
       "telefone": 965607634,
       "nome": "Cliente 5",
       "endereco": "Av 3, N: 39",
-      "qualificado": true,
+      "qualificado": false,
       "status": "ED",
       "descricao": "Cliente não atendeu"
     },
@@ -51,8 +51,8 @@
       "nome": "Cliente 6",
       "endereco": "Av 4, N: 39",
       "qualificado": false,
-      "status": "",
-      "descricao": ""
+      "status": "PR",
+      "descricao": "Finalizado. "
     }
   ]
 }

@@ -18,4 +18,9 @@ export class ClientRepository {
     }
     )
   }
+
+  async findAll() {
+    const { data } = await axios.get('http://localhost:5000/clients')
+    return data
+  }
 }

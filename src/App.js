@@ -1,12 +1,11 @@
 import './App.css';
-import axios from 'axios';
-import XMLParser from 'react-xml-parser'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ClientRepository } from './repository/clientRepository'
 import { FormQualifica } from './components/FormQualifica'
 import Context from './contexts/form-context'
 import { NextAPI } from './usecase/nextApi';
 import { Header } from './components/Header';
+import { Home } from './components/Home';
 
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
   const [idLigacao, setIdLigacao] = useState('')
   const [statusLigacao, setStatusLigacao] = useState('')
   const [client, setClient] = useState([])
+  const [clients, setClients] = useState([])
 
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
   
@@ -36,51 +36,32 @@ function App() {
   
 
   async function consultarLigacao() {
-    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=ConsultarLigacao&IdSessao=${idSessao}&IdLigacao=${idLigacao}`)
-    const responseJson = new XMLParser().parseFromString(data)
-    setStatusLigacao(responseJson.children[1].value)
+    const result = await nextAPI.consultarLigacao(idSessao, idLigacao)
+    setStatusLigacao(result)
   }
 
 
 
   async function ChecarConnectedId() {
-    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=ChecarConnectedId&IdSessao=${idSessao}&Numero=9813`)
-    const responseJson = new XMLParser().parseFromString(data)
-    console.log('responseJson', responseJson.children[1].value);
-    //setStatusLigacao(responseJson.children[1].value)
+    await nextAPI.checarConnectedId(idSessao)
   }
 
+  async function ListarClientes() {
+    const clients = await clientRepository.findAll()
+    setClients(clients)
+  }
 
+  useEffect(() => {
+    (async () => {
+      await ListarClientes()
+    })()
+  }, [])
+
+  
   return (
     <div className="App">
-       <Header />
-      <Context.Provider value={{ idSessao, idLigacao, statusLigacao, client }}>
-
-        <div className='container'>
-
-         <div className='details'>
-         <button onClick={startSession}>Iniciar Sessão</button>
-          <h2>Dados da Ligação</h2>
-          <h3>ID da Sessão: {idSessao}</h3>
-          <h3>Status da liga: {statusLigacao}</h3>
-          <h3>ID da Ligação: {idLigacao}</h3>
-          <h3>ID do Cliente: {client.id}</h3>
-          <h3>Nome do Cliente: {client.nome}</h3>
-          <h3>Endereço: {client.endereco}</h3>
-          <h3>Telefone: {client.telefone}</h3>
-          <br/>
-          <FormQualifica />
-        </div>
-        <div className='control'>
-         <button onClick={gerarLigacao}>Gerar Ligação</button>
-         <button onClick={consultarLigacao}>Consultar Ligação</button>
-         <button onClick={ChecarConnectedId}>Checar Status Ramal</button>
-        </div>
-        
-        </div>
-        
-
-      </ Context.Provider>
+      <Header />
+       <Home />
       <footer className='footer'>&copy; 2022 RenRaDevs.com</footer>
     </div>
   );
