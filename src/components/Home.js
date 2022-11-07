@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ClientRepository } from '../repository/clientRepository'
 import { FormQualifica } from './FormQualifica'
 import Context from '../contexts/form-context'
 import { NextAPI } from '../usecase/nextApi';
-import { Header } from './Header';
-
+import { Link } from "react-router-dom"
 
 function Home() {
   const [idSessao, setIdSessao] = useState('')
   const [idLigacao, setIdLigacao] = useState('')
   const [statusLigacao, setStatusLigacao] = useState('')
   const [client, setClient] = useState([])
-  const [clients, setClients] = useState([])
 
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
   
@@ -44,21 +42,9 @@ function Home() {
     await nextAPI.checarConnectedId(idSessao)
   }
 
-  async function ListarClientes() {
-    const clients = await clientRepository.findAll()
-    setClients(clients)
-  }
-
-  useEffect(() => {
-    (async () => {
-      await ListarClientes()
-    })()
-  }, [])
-
-  
   return (
     <div className="App">
-      <Context.Provider value={{ idSessao, idLigacao, statusLigacao, client, clients }}>
+      <Context.Provider value={{ idSessao, idLigacao, statusLigacao, client }}>
 
         <div className='container'>
 
@@ -76,29 +62,12 @@ function Home() {
           <FormQualifica />
         </div>
         <div className='control'>
-         <button onClick={gerarLigacao}>Gerar Ligação</button>
-         <button onClick={consultarLigacao}>Consultar Ligação</button>
-         <button onClick={ChecarConnectedId}>Checar Status Ramal</button>
-         <button onClick={ListarClientes}>Listar Clientes </button>
+          <button className='button' onClick={gerarLigacao}>Gerar Ligação</button>
+          <button className='button' onClick={consultarLigacao}>Consultar Ligação</button>
+          <button className='button' onClick={ChecarConnectedId}>Checar Status Ramal</button>
+          <Link className='button' to="/lista-clientes">Listar Clientes</Link>
         </div>
-        <table>
-          <thead>
-              <tr>
-                  <th>NOME</th>
-                  <th>QUALIFICADO</th>
-                  <th></th>
-              </tr>
-          </thead>
-
-          <tbody>
-          {clients.map(client => (
-            <tr key={client.id}>
-              <td>{client.nome}</td>
-              <td>{client.qualificado ? 'true' : 'false'}</td>
-            </tr>
-          ))}
-        </tbody>
-        </table>
+        
         </div>
         
       </ Context.Provider>

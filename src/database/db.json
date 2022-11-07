@@ -6,26 +6,26 @@
       "nome": "Raul Dillan",
       "endereco": "Av 1, N: 38",
       "qualificado": true,
-      "status": "ED",
-      "descricao": "Qualificado"
+      "status": "PR",
+      "descricao": "Ligação atendida e cliente confgirmado"
     },
     {
       "id": 2,
-      "telefone": 965607634,
-      "nome": "Renan",
+      "telefone": 993696455,
+      "nome": "Nadia",
       "endereco": "Av 2, N: 39",
-      "qualificado": false,
+      "qualificado": true,
       "status": "ED",
-      "descricao": "Finalizado"
+      "descricao": "Cliente não atendeu"
     },
     {
       "id": 3,
       "telefone": 965607634,
       "nome": "Cliente 3",
       "endereco": "Av 3, N: 39",
-      "qualificado": false,
-      "status": "ED",
-      "descricao": "Vota 13 "
+      "qualificado": true,
+      "status": "TR",
+      "descricao": ""
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "endereco": "Av 4, N: 39",
       "qualificado": false,
       "status": "AT",
-      "descricao": "Vota 22"
+      "descricao": "Finalizado. "
     },
     {
       "id": 5,

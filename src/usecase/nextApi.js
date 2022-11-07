@@ -17,6 +17,7 @@ export class NextAPI {
   async gerarLigacao(idSessao) {
     const currentClient = await this.clientRepository.findFirst()
     const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${currentClient.telefone}`)
+    console.log(data)
     const responseJson = new XMLParser().parseFromString(data)
     return responseJson.children[1].value
   }

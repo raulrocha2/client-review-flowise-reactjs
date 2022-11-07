@@ -29,12 +29,10 @@ function FormQualifica() {
   }
 
   return (
-    <div>
+    <div className='form-qa'>
       <h2>Qualificar Cliente</h2>
       <textarea id="textarea" name="textarea" rows="5" cols="40" value={descricao} onChange={(e) => setDescricao(e.target.value)}></textarea>
-      <br/>
-      <button onClick={QualificarLigacao}>Qualificar</button>
-     
+      <button onClick={QualificarLigacao}>Qualificar</button>     
     </div>
   )
 }
