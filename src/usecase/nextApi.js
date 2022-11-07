@@ -31,7 +31,7 @@ export class NextAPI {
 
 
 
-  async ChecarConnectedId(idSessao) {
+  async checarConnectedId(idSessao) {
     const { data } = await axios.get(`/cgi-bin/nip-api2?Op=ChecarConnectedId&IdSessao=${idSessao}&Numero=9813`)
     const responseJson = new XMLParser().parseFromString(data)
     console.log('responseJson', responseJson.children[1].value);
