@@ -14,7 +14,7 @@ function Home() {
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
   
   const clientRepository = new ClientRepository()
-  const nextAPI = new NextAPI(urlStartSessao, clientRepository)
+  const nextAPI = new NextAPI(urlStartSessao)
 
   
 
@@ -26,7 +26,7 @@ function Home() {
   async function gerarLigacao() {
     const currentClient = await clientRepository.findFirst()
     setClient(currentClient)
-    const result = await nextAPI.gerarLigacao(idSessao)
+    const result = await nextAPI.gerarLigacao(idSessao, currentClient.telefone)
     setIdLigacao(result)
   }
   

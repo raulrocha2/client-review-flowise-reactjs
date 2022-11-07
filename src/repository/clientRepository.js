@@ -9,11 +9,11 @@ export class ClientRepository {
     return client
   }
 
-  async update(clientId, statusLigacao, descricao) {
+  async update(clientId, statusLigacao, descricao, qualificado) {
     return await axios.patch(`http://localhost:5000/clients/${clientId}`, 
     {
       "status": statusLigacao,
-      "qualificado": true,
+      qualificado,
       descricao
     }
     )

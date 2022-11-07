@@ -3,9 +3,8 @@ import XMLParser from 'react-xml-parser'
 
 export class NextAPI {
   
-  constructor (url, clientRepository){
+  constructor (url) {
     this.url = url
-    this.clientRepository = clientRepository
   }
   
   async startSession() {
@@ -14,9 +13,8 @@ export class NextAPI {
     return responseJson.children[1].value
   }
 
-  async gerarLigacao(idSessao) {
-    const currentClient = await this.clientRepository.findFirst()
-    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${currentClient.telefone}`)
+  async gerarLigacao(idSessao, telefone) {
+    const { data } = await axios.get(`/cgi-bin/nip-api2?Op=Discar&IdSessao=${idSessao}&Origem=7172&Destino=${telefone}`)
     console.log(data)
     const responseJson = new XMLParser().parseFromString(data)
     return responseJson.children[1].value
