@@ -7,6 +7,8 @@ import { NextAPI } from '../usecase/nextApi'
 function FormQualifica() {
   const [descricao, setDescricao] = useState('')
   const [qualificado, setQualificado] = useState(false)
+  const [contatar_novamente, setContatar_novamente] = useState(false)
+  const [intersse, setIntersse] = useState(false)
 
   const urlStartSessao = '/cgi-bin/nip-api2?Op=IniciarSessao&Usuario=nipapi&Senha=cdrapi3.1'
   const clientRepository = new ClientRepository()
@@ -17,7 +19,20 @@ function FormQualifica() {
   async function QualificarLigacao() {
     const statusLigacao = await nextAPI.consultarLigacao(idSessao, idLigacao)
     const clientId = client.id
-    clientRepository.update(clientId, statusLigacao, descricao)
+    let tentativas_contato = 0
+    if (contatar_novamente) {
+      tentativas_contato = client.tentativas_contato + 1
+    } else {
+      tentativas_contato = client.tentativas_contato
+    }
+    clientRepository.update(
+      clientId, 
+      statusLigacao, 
+      descricao, 
+      qualificado, 
+      tentativas_contato,
+      intersse
+      )
   }
 
   return (
@@ -34,15 +49,42 @@ function FormQualifica() {
       <label>
         <input 
           type="checkbox" 
-          id="input" 
-          name="input" 
+          id="input1" 
+          name="input1" 
           checked={qualificado}
           onChange={(e) => setQualificado(e.target.checked)}
           /> Qualificar 
       </label>
+      <label>
+        <input 
+          type="checkbox" 
+          id="input2" 
+          name="input2" 
+          checked={intersse}
+          onChange={(e) => setIntersse(e.target.checked)}
+          /> Tem interesse
+      </label>
+      <label>
+        <input 
+          type="checkbox" 
+          id="input4" 
+          name="input4" 
+          checked={contatar_novamente}
+          onChange={(e) => setContatar_novamente(e.target.checked)}
+          /> Não Atende
+      </label>
+      <label>
+        <input 
+          type="checkbox" 
+          id="input5" 
+          name="input5" 
+          checked={contatar_novamente}
+          onChange={(e) => setContatar_novamente(e.target.checked)}
+          /> Contatar Novamente 
+      </label>
         <br />
         <br />
-      <button onClick={QualificarLigacao}>Finalizar qualificação</button>     
+      <button onClick={QualificarLigacao}>Finalizar ligação</button>     
     </div>
   )
 }

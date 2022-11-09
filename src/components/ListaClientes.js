@@ -25,6 +25,8 @@ function ListarClientes() {
               <th></th>
               <th>NOME</th>
               <th>QUALIFICADO</th>
+              <th>LIGAR NOVAMENTE</th>
+              <th>TEM INTERESSE</th>
               <th>DESCRIÇÂO</th>
             </tr>
         </thead>
@@ -35,6 +37,8 @@ function ListarClientes() {
             <td></td>
             <td>{client.nome}</td>
             <td>{client.qualificado ? 'Sim' : 'Não'}</td>
+            <td>{client.contatar_novamente ? 'Sim' : 'Não'}</td>
+            <td>{client.intersse ? 'Sim' : 'Não'}</td>
             <td>{client.descricao}</td>
           </tr>
         ))}

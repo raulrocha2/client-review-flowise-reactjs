@@ -3,20 +3,24 @@
     {
       "id": 1,
       "telefone": 949196553,
-      "nome": "Raul Dillan",
+      "nome": "Cliente 1",
       "endereco": "Av 1, N: 38",
-      "qualificado": true,
-      "status": "PR",
-      "descricao": "Cliente Qualificado"
+      "qualificado": false,
+      "status": "TR",
+      "descricao": "NÃO ATENDE",
+      "tentativas_contato": 0,
+      "intersse": false
     },
     {
       "id": 2,
       "telefone": 993696455,
-      "nome": "Nadia",
+      "nome": "Cliente 2",
       "endereco": "Av 2, N: 39",
       "qualificado": true,
-      "status": "PR",
-      "descricao": "Cliente Qualificado"
+      "status": "ED",
+      "descricao": "TEM INTERESSE",
+      "tentativas_contato": 0,
+      "intersse": true
     },
     {
       "id": 3,
@@ -24,35 +28,109 @@
       "nome": "Cliente 3",
       "endereco": "Av 3, N: 39",
       "qualificado": true,
-      "status": "PR",
-      "descricao": "Cliente Qualificado"
+      "status": "ED",
+      "descricao": "TEM INTERESSE",
+      "tentativas_contato": 0,
+      "intersse": true
     },
     {
       "id": 4,
       "telefone": 35007518,
       "nome": "Cliente 4",
       "endereco": "Av 4, N: 39",
-      "qualificado": false,
+      "qualificado": true,
       "status": "ED",
-      "descricao": "Ligar depois"
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
     },
     {
       "id": 5,
       "telefone": 965607634,
       "nome": "Cliente 5",
       "endereco": "Av 3, N: 39",
-      "qualificado": false,
+      "qualificado": true,
       "status": "ED",
-      "descricao": "CLIENTE QUALIFICADO"
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
     },
     {
       "id": 6,
       "telefone": 35007518,
       "nome": "Cliente 6",
       "endereco": "Av 4, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
+    },
+    {
+      "id": 7,
+      "telefone": 949196553,
+      "nome": "Cliente 7",
+      "endereco": "Av 1, N: 38",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
+    },
+    {
+      "id": 8,
+      "telefone": 993696455,
+      "nome": "Cliente 8",
+      "endereco": "Av 2, N: 39",
       "qualificado": false,
-      "status": "PR",
-      "descricao": "CLIENTE QUALIFICADO"
+      "status": "ED",
+      "descricao": "NÃO ATENDE",
+      "tentativas_contato": 0,
+      "intersse": false
+    },
+    {
+      "id": 9,
+      "telefone": 965607634,
+      "nome": "Cliente 9",
+      "endereco": "Av 3, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
+    },
+    {
+      "id": 10,
+      "telefone": 35007518,
+      "nome": "Cliente 10",
+      "endereco": "Av 4, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
+    },
+    {
+      "id": 11,
+      "telefone": 965607634,
+      "nome": "Cliente 11",
+      "endereco": "Av 3, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
+    },
+    {
+      "id": 12,
+      "telefone": 35007518,
+      "nome": "Cliente 12",
+      "endereco": "Av 4, N: 39",
+      "qualificado": true,
+      "status": "ED",
+      "descricao": "Confirmado",
+      "tentativas_contato": 0,
+      "intersse": true
     }
   ]
 }

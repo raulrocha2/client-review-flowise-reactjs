@@ -16,27 +16,30 @@ function Home() {
   const clientRepository = new ClientRepository()
   const nextAPI = new NextAPI(urlStartSessao)
 
-  
-
   async function startSession() {
     const result = await nextAPI.startSession()
     setIdSessao(result)
   }
 
   async function gerarLigacao() {
-    const currentClient = await clientRepository.findFirst()
-    setClient(currentClient)
-    const result = await nextAPI.gerarLigacao(idSessao, currentClient.telefone)
-    setIdLigacao(result)
+    const firstClient = await clientRepository.findFirst()
+    if (!firstClient) {
+      const secondClient = await clientRepository.findSecond()
+      setClient(secondClient)
+      const result = await nextAPI.gerarLigacao(idSessao, secondClient.telefone)
+      setIdLigacao(result)
+    } else {
+      setClient(firstClient)
+      const result = await nextAPI.gerarLigacao(idSessao, firstClient.telefone)
+      setIdLigacao(result)
+    }
+    
   }
   
-
   async function consultarLigacao() {
     const result = await nextAPI.consultarLigacao(idSessao, idLigacao)
     setStatusLigacao(result)
   }
-
-
 
   async function ChecarConnectedId() {
     await nextAPI.checarConnectedId(idSessao)
